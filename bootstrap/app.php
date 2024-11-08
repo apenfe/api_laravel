@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->statefulApi();  // se asegura de solicitar autenticacion en cada peticion
         $middleware->prependToGroup('api', AlwaysAcceptJson::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
