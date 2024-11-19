@@ -7,13 +7,7 @@ use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-/**
- * @group Products
- *
- * APIs for managing products
- *
- * @queryParam page int The page number. Example: 1
- */
+
 class ProductController extends Controller
 {
 
