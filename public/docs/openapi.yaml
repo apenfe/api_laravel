@@ -1,0 +1,394 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://apiies.test'
+paths:
+  /api/lists/categories:
+    get:
+      summary: ''
+      operationId: getApiListsCategories
+      description: ''
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page number.'
+          example: 13
+          required: true
+          schema:
+            type: integer
+            description: 'The page number.'
+            example: 13
+            nullable: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      name: 'Updated category from api'
+                    -
+                      id: 2
+                      name: 'velit eaque ut'
+                    -
+                      id: 3
+                      name: 'vel officia est'
+                    -
+                      id: 4
+                      name: 'sunt maiores ipsum'
+                    -
+                      id: 5
+                      name: 'qui unde voluptatem'
+                    -
+                      id: 6
+                      name: 'suscipit rerum incidunt'
+                    -
+                      id: 7
+                      name: 'quibusdam voluptas consequatur'
+                    -
+                      id: 8
+                      name: 'eos libero consequatur'
+                    -
+                      id: 9
+                      name: 'vero placeat dolorum'
+                    -
+                      id: 10
+                      name: 'tenetur blanditiis molestias'
+                    -
+                      id: 12
+                      name: 'New Category from API'
+                    -
+                      id: 13
+                      name: 'New Category from API'
+                    -
+                      id: 14
+                      name: 'New Category from API'
+                    -
+                      id: 15
+                      name: 'categoria foto'
+                    -
+                      id: 16
+                      name: 'categoria foto 2'
+                    -
+                      id: 17
+                      name: 'categoria foto 2'
+                    -
+                      id: 18
+                      name: 'categoria foto 2'
+                    -
+                      id: 19
+                      name: 'categoria foto 3'
+                    -
+                      id: 20
+                      name: 'categoria foto 3'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: 'Updated category from api'
+                      -
+                        id: 2
+                        name: 'velit eaque ut'
+                      -
+                        id: 3
+                        name: 'vel officia est'
+                      -
+                        id: 4
+                        name: 'sunt maiores ipsum'
+                      -
+                        id: 5
+                        name: 'qui unde voluptatem'
+                      -
+                        id: 6
+                        name: 'suscipit rerum incidunt'
+                      -
+                        id: 7
+                        name: 'quibusdam voluptas consequatur'
+                      -
+                        id: 8
+                        name: 'eos libero consequatur'
+                      -
+                        id: 9
+                        name: 'vero placeat dolorum'
+                      -
+                        id: 10
+                        name: 'tenetur blanditiis molestias'
+                      -
+                        id: 12
+                        name: 'New Category from API'
+                      -
+                        id: 13
+                        name: 'New Category from API'
+                      -
+                        id: 14
+                        name: 'New Category from API'
+                      -
+                        id: 15
+                        name: 'categoria foto'
+                      -
+                        id: 16
+                        name: 'categoria foto 2'
+                      -
+                        id: 17
+                        name: 'categoria foto 2'
+                      -
+                        id: 18
+                        name: 'categoria foto 2'
+                      -
+                        id: 19
+                        name: 'categoria foto 3'
+                      -
+                        id: 20
+                        name: 'categoria foto 3'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: 'Updated category from api'
+      tags:
+        - Categories
+  /api/categories:
+    get:
+      summary: 'Get all categories'
+      operationId: getAllCategories
+      description: 'Getting the list of categories'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page number.'
+          example: 6
+          required: true
+          schema:
+            type: integer
+            description: 'The page number.'
+            example: 6
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Categories
+    post:
+      summary: ''
+      operationId: postApiCategories
+      description: ''
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page number.'
+          example: 14
+          required: true
+          schema:
+            type: integer
+            description: 'The page number.'
+            example: 14
+            nullable: false
+      responses: {  }
+      tags:
+        - Categories
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: laudantium
+                  nullable: false
+              required:
+                - name
+  '/api/categories/{id}':
+    get:
+      summary: 'show category'
+      operationId: showCategory
+      description: 'Get a category by id'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page number.'
+          example: 15
+          required: true
+          schema:
+            type: integer
+            description: 'The page number.'
+            example: 15
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Categories
+    put:
+      summary: ''
+      operationId: putApiCategoriesId
+      description: ''
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page number.'
+          example: 9
+          required: true
+          schema:
+            type: integer
+            description: 'The page number.'
+            example: 9
+            nullable: false
+      responses: {  }
+      tags:
+        - Categories
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: exercitationem
+                  nullable: false
+              required:
+                - name
+    delete:
+      summary: ''
+      operationId: deleteApiCategoriesId
+      description: ''
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page number.'
+          example: 17
+          required: true
+          schema:
+            type: integer
+            description: 'The page number.'
+            example: 17
+            nullable: false
+      responses: {  }
+      tags:
+        - Categories
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the category.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+  /api/products:
+    get:
+      summary: ''
+      operationId: getApiProducts
+      description: ''
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page number.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The page number.'
+            example: 1
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Products
+tags:
+  -
+    name: Categories
+    description: 'APIs for managing categories'
+  -
+    name: Endpoints
+    description: ''
+  -
+    name: Products
+    description: "\nAPIs for managing products"
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.'
+security:
+  -
+    default: []
