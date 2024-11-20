@@ -23,6 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->statefulApi();  // se asegura de solicitar autenticación en cada petición
+        //$middleware->withThrottleApi('products');
         $middleware->prependToGroup('api', AlwaysAcceptJson::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
