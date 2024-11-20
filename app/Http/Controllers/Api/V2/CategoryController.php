@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\V2;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Knuckles\Scribe\Attributes\Endpoint;
-use Knuckles\Scribe\Attributes\Group;
-use Knuckles\Scribe\Attributes\QueryParam;
 use OpenApi\Annotations as OA;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -30,12 +26,12 @@ class CategoryController extends Controller
     {
         abort_if(!auth()->user()->tokenCan('categories-list'), 403);
 
-        return CategoryResource::collection(Category::all());
+        return CategoryResource::collection(Category::where('id', '<', 3)->get());
     }
 
     public function show(Category $category)
     {
-        abort_if(!auth()->user()->tokenCan('categories-show'), 403);
+       // abort_if(!auth()->user()->tokenCan('categories-show'), 403);
         return new CategoryResource($category);
     }
 
