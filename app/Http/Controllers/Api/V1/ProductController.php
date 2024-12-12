@@ -9,6 +9,13 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+    // filtrar productos por categorioa
+    // ampliar atributos de productos y categorias
+    // permisos con los tokens can-...
+    // precios especiales de descuento a categorias por navidad
+    // subir y descragar imagenes
+    // uno o varios comentarios a productos
+    // etiquetas de productos n a n
 
     public function index()
     {
