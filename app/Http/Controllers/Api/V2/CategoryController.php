@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use OpenApi\Annotations as OA;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,16 +24,16 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        abort_if(!auth()->user()->tokenCan('categories-list'), 403);
+       // abort_if(!auth()->user()->tokenCan('categories-list'), 403);
 
-        return CategoryResource::collection(Cache::rememberForever('categories', function () {
-            return Category::all();
-        }));
+        return CategoryResource::collection(Category::all());
     }
 
     public function show(Category $category)
     {
-       // abort_if(!auth()->user()->tokenCan('categories-show'), 403);
+        //$salida = Category::find($category);
+        //dd($category);
+        // abort_if(!auth()->user()->tokenCan('categories-show'), 403);
         return new CategoryResource($category);
     }
 

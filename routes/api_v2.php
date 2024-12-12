@@ -11,8 +11,8 @@ Route::get('/user', function (Request $request) {
 Route::get('lists/categories', [CategoryController::class, 'list']);
 
 Route::middleware('auth:sanctum')->group(function(){
-    Route::apiResource('categories', CategoryController::class);
 
-    Route::get('products', [ProductController::class, 'index'])
-        ->middleware('throttle:products'); // 2 requests per minute
+    Route::apiResource('categories', CategoryController::class);
+    Route::apiResource('products', ProductController::class)->middleware('throttle:products');
+    Route::get('products-filter/{id}', [ProductController::class, 'category']);
 });

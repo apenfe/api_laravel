@@ -16,9 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
         apiPrefix: 'api/v1',
         then: function () {
-            Route::prefix('api/v2')->group(function () {
-                require __DIR__.'/../routes/api_v2.php';
-            });
+            Route::middleware('api')  // Añadimos el middleware api aquí
+            ->prefix('api/v2')
+                ->group(base_path('routes/api_v2.php'));
         }
     )
     ->withMiddleware(function (Middleware $middleware) {
