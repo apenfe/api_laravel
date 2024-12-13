@@ -32,6 +32,10 @@ class StoreProductRequest extends FormRequest {
             'price.integer' => 'El campo precio debe ser un número entero',
             'stock.required' => 'El campo stock es obligatorio',
             'stock.integer' => 'El campo stock debe ser un número entero',
+            'image.required' => 'El campo imagen es obligatorio',
+            'image.image' => 'El campo imagen debe ser una imagen',
+            'image.mimes' => 'El campo imagen debe ser un archivo de tipo: jpeg, png, jpg, gif, svg',
+            'image.max' => 'El campo imagen no debe pesar más de 2MB',
         ];
     }
 }

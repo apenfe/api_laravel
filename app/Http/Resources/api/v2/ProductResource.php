@@ -22,7 +22,7 @@ class ProductResource extends JsonResource
             'price' => number_format($this->price/100, 2),
             'category' => CategoryResource::make($this->whenLoaded('category')),
             'stock' => $this->stock,
-            'image' => $this->image,
+            'image' => asset('storage/products/' . $this->image),
         ];
     }
 }

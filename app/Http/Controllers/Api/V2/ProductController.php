@@ -9,6 +9,8 @@ use App\Models\Category;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Storage;
+use Str;
 
 class ProductController extends Controller
 {
@@ -17,7 +19,7 @@ class ProductController extends Controller
     // ***permisos con los tokens can-...
     // ***precios especiales de descuento a categorias por navidad
     // ***solucionar recursos para v1 y v2, tambien ver como sacar un json de categoria dentro de producto
-    // subir y descragar imagenes ***
+    // ***subir y descragar imagenes
     // uno o varios comentarios a productos
     // etiquetas de productos n a n
 
@@ -43,13 +45,40 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request)
     {
-        $product = Product::create($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image'); // get the file, con todos los datos y metadatos
+            $name = Str::uuid() . '.' . $file->extension(); // get the name of the file
+            $file->storeAs('products', $name, 'public'); // save the file in the storage
+            $data['image'] = $name; // set the name of the file in the database
+        }
+
+        $product = Product::create($data);
+
         return new ProductResource($product);
     }
 
     public function update(StoreProductRequest $request, Product $product)
     {
-        $product->update($request->all());
+        if (!$product) {
+            return response()->json(['message' => 'Product not found'], 404);
+        }
+
+        $data = $request->all(); // Inicializar $data con los datos del request
+
+        // Verificar si se subió una imagen guardarla y borra la anterior
+        if ($request->hasFile('image')) {
+            $file = $request->file('image'); // get the file, con todos los datos y metadatos
+            $name = Str::uuid() . '.' . $file->extension(); // get the name of the file
+            $file->storeAs('products', $name, 'public'); // save the file in the storage
+            $data['image'] = $name; // set the name of the file in the database
+            // Borrar la imagen anterior
+            $oldImage = $product->image;
+            Storage::disk('public')->delete('products/' . $oldImage);
+        }
+
+        $product->update($data);
         return new ProductResource($product);
     }
 
@@ -59,6 +88,11 @@ class ProductController extends Controller
             return response()->json(['message' => 'Product not found'], 404);
         }
 
+        // Borrar la imagen del producto
+        $image = $product->image;
+        Storage::disk('public')->delete('products/' . $image);
+
+        // Borrar el producto
         $product->delete();
         return response()->json(['message' => 'Product deleted successfully'], 200);
     }
