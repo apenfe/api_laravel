@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\api\v2;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -17,9 +17,9 @@ class CategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'description' => $this->when($request->is('api/categories*'), function () use($request) {
+            'description' => $this->when($request->is('api/v2/categories*'), function () use($request) {
 
-                if($request->is('api/categories')) {
+                if($request->is('api/v2/categories')) {
                     return str($this->description)->limit(20);
                 }
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Resources\CategoryResource;
+use App\Http\Resources\api\v2\CategoryResource;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use OpenApi\Annotations as OA;

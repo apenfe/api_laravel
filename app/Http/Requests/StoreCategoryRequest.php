@@ -23,6 +23,8 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'name' => ['required'],
+            'description' => ['required'],
+            'photo' => ['required'],
         ];
     }
 
@@ -34,7 +36,9 @@ class StoreCategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'El nombre es obligatorio',
+            'name.required' => 'El campo nombre es obligatorio',
+            'description.required' => 'El campo descripción es obligatorio',
+            'photo.required' => 'El campo foto es obligatorio',
         ];
     }
 }

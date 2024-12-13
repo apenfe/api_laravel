@@ -12,6 +12,7 @@ class StoreProductRequest extends FormRequest {
             'name' => ['required'],
             'description' => ['required'],
             'price' => ['required', 'integer'],
+            'stock' => ['required', 'integer'],
         ];
 
     }
@@ -22,7 +23,14 @@ class StoreProductRequest extends FormRequest {
 
     public function messages(): array {
         return [
-            'category_id.exists' => 'The selected category does not exist.',
+            'category_id.required' => 'El campo categoría es obligatorio',
+            'category_id.exists' => 'La categoría seleccionada no existe',
+            'name.required' => 'El campo nombre es obligatorio',
+            'description.required' => 'El campo descripción es obligatorio',
+            'price.required' => 'El campo precio es obligatorio',
+            'price.integer' => 'El campo precio debe ser un número entero',
+            'stock.required' => 'El campo stock es obligatorio',
+            'stock.integer' => 'El campo stock debe ser un número entero',
         ];
     }
 }

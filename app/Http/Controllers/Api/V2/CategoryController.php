@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V2;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Resources\CategoryResource;
+use App\Http\Resources\api\v2\CategoryResource;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use OpenApi\Annotations as OA;
@@ -24,21 +24,22 @@ class CategoryController extends Controller
      */
     public function index()
     {
-       // abort_if(!auth()->user()->tokenCan('categories-list'), 403);
+        abort_if(!auth()->user()->tokenCan('v2'), 403);
 
         return CategoryResource::collection(Category::all());
     }
 
     public function show(Category $category)
     {
-        //$salida = Category::find($category);
-        //dd($category);
-        // abort_if(!auth()->user()->tokenCan('categories-show'), 403);
+        abort_if(!auth()->user()->tokenCan('v2'), 403);
+
         return new CategoryResource($category);
     }
 
     public function list()
     {
+        abort_if(!auth()->user()->tokenCan('v2'), 403);
+
         return CategoryResource::collection(Category::all());
     }
 

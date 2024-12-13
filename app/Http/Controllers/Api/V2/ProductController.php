@@ -4,23 +4,24 @@ namespace App\Http\Controllers\Api\V2;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
-use App\Http\Resources\ProductResource;
+use App\Http\Resources\api\v2\ProductResource;
 use App\Models\Product;
 
 class ProductController extends Controller
 {
     // *** filtrar productos por categorioa
-    // ampliar atributos de productos y categorias ***
-    // permisos con los tokens can-... ***
+    // ***ampliar atributos de productos y categorias
+    // ***permisos con los tokens can-...
     // precios especiales de descuento a categorias por navidad
+    // ***solucionar recursos para v1 y v2, tambien ver como sacar un json de categoria dentro de producto
     // subir y descragar imagenes ***
     // uno o varios comentarios a productos
     // etiquetas de productos n a n
 
     public function index()
     {
-        if(!auth()->user()->tokenCan('products-list')){
-          //  return response()->json(['message' => 'Not authorized'], 403);
+        if(!auth()->user()->tokenCan('v2')){
+            return response()->json(['message' => 'Not authorized to v2'], 403);
         }
 
         $products = Product::with('category')->paginate(9);
