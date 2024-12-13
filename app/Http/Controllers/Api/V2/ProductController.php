@@ -5,14 +5,17 @@ namespace App\Http\Controllers\Api\V2;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Resources\api\v2\ProductResource;
+use App\Models\Category;
 use App\Models\Product;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProductController extends Controller
 {
     // *** filtrar productos por categorioa
     // ***ampliar atributos de productos y categorias
     // ***permisos con los tokens can-...
-    // precios especiales de descuento a categorias por navidad
+    // ***precios especiales de descuento a categorias por navidad
     // ***solucionar recursos para v1 y v2, tambien ver como sacar un json de categoria dentro de producto
     // subir y descragar imagenes ***
     // uno o varios comentarios a productos
@@ -25,6 +28,7 @@ class ProductController extends Controller
         }
 
         $products = Product::with('category')->paginate(9);
+
         return ProductResource::collection($products);
     }
 
@@ -60,10 +64,39 @@ class ProductController extends Controller
     }
 
     // filtrar productos por categorias
-    public function category($category)
+    public function category($id)
     {
-        $products = Product::where('category_id', $category)->get();
+        $category = Category::find($id)->first();
+        $products = Product::where('category_id', $id)->with('category')->get();
+
+        // Verificar si se obtuvieron productos
+        if ($products->isEmpty()) {
+            return response()->json(['message' => 'No products found in this category'], 404);
+        }
+
+        // Verificar si es Navidad
+        $today = Carbon::now();
+        if ($today->month == 12 && $category->name == 'Christmas') {
+            $products = $this->applyChristmasDiscount($products);
+        }
+
         return ProductResource::collection($products);
+    }
+
+    // Método para aplicar descuento navideño
+    private function applyChristmasDiscount($products)
+    {
+        $discountRate = 0.10; // 10% de descuento
+
+        if ($products instanceof Collection) {
+            foreach ($products as $product) {
+                $product->price = $product->price * (1 - $discountRate);
+            }
+        } elseif ($products instanceof Product) {
+            $products->price = $products->price * (1 - $discountRate);
+        }
+
+        return $products;
     }
 
 }

@@ -23,6 +23,7 @@ class ProductFactory extends Factory
             'description' => fake()->paragraph(),
             'price' => rand(1000,99999),
             'stock' => rand(1,100),
+            'image' => $this->faker->imageUrl(),
         ];
     }
 }

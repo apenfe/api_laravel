@@ -13,6 +13,7 @@ class StoreProductRequest extends FormRequest {
             'description' => ['required'],
             'price' => ['required', 'integer'],
             'stock' => ['required', 'integer'],
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
 
     }
