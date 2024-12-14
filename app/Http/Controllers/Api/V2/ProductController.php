@@ -14,13 +14,13 @@ use Str;
 
 class ProductController extends Controller
 {
-    // *** filtrar productos por categorioa
-    // ***ampliar atributos de productos y categorias
-    // ***permisos con los tokens can-...
-    // ***precios especiales de descuento a categorias por navidad
-    // ***solucionar recursos para v1 y v2, tambien ver como sacar un json de categoria dentro de producto
-    // ***subir y descragar imagenes
-    // uno o varios comentarios a productos
+    // *** filtrar productos por categoría
+    // *** ampliar atributos de productos y categorías
+    // *** permisos con los tokens can-...
+    // *** precios especiales de descuento a categorías por navidad
+    // *** solucionar recursos para v1 y v2, también ver como sacar un json de categoría dentro de producto
+    // *** subir y descargar imágenes
+    // *** uno o varios comentarios a productos
     // etiquetas de productos n a n
 
     public function index()
