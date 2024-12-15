@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\V2;
+namespace App\Http\Controllers\Api\V3;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TagRequest;

@@ -24,5 +24,15 @@ class ProductTagSeeder extends Seeder {
                 $tags->random(3)->pluck('id')->toArray()
             );
         });
+
+        // para cada relacion producto-tag asignarle un usuario aleatorio
+        $products->each(function ($product) {
+            $product->tags->each(function ($tag) use ($product) {
+                $product->tags()->updateExistingPivot(
+                    $tag->id,
+                    ['added_by' => rand(1, 10)]
+                );
+            });
+        });
     }
 }

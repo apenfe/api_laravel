@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\api\v2;
+namespace App\Http\Resources\api\v3;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;

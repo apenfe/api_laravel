@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Api\V2\AuthController;
-use App\Http\Controllers\Api\V2\CategoryController;
-use App\Http\Controllers\Api\V2\CommentController;
-use App\Http\Controllers\Api\V2\ProductController;
-use App\Http\Controllers\Api\V2\TagController;
+use App\Http\Controllers\Api\V3\AuthController;
+use App\Http\Controllers\Api\V3\CategoryController;
+use App\Http\Controllers\Api\V3\CommentController;
+use App\Http\Controllers\Api\V3\ProductController;
+use App\Http\Controllers\Api\V3\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +14,6 @@ Route::get('/user', function (Request $request) {
 
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('register', [AuthController::class, 'register'])->name('register');
-
-//Route::get('lists/categories', [CategoryController::class, 'list']);
 
 Route::middleware('auth:sanctum')->group(function(){
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Product::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(Tag::class)->constrained()->onDelete('cascade');
+            $table->string('added_by')->nullable();
             $table->timestamps();
         });
     }
